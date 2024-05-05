@@ -1,9 +1,9 @@
-import PyPDF2
+import pypdf
 
 def crop_pdf(input_pdf, output_pdf, crop_box_odd, crop_box_even):
     with open(input_pdf, 'rb') as file:
-        pdf_reader = PyPDF2.PdfReader(file)
-        pdf_writer = PyPDF2.PdfWriter()
+        pdf_reader = pypdf.PdfReader(file)
+        pdf_writer = pypdf.PdfWriter()
 
         for idx, page in enumerate(pdf_reader.pages):
             if idx % 2 == 0:
@@ -20,11 +20,11 @@ def crop_pdf(input_pdf, output_pdf, crop_box_odd, crop_box_even):
             pdf_writer.write(output_file)
 
 # Example usage:
-input_pdf_path = r'input.pdf'
-output_pdf_path = 'output.pdf'
+input_pdf_path = r'/home/alex/Dropbox/PHD/SOTA/Liu Wang Tegmark - KAN.pdf'
+output_pdf_path = r'/home/alex/Dropbox/PHD/SOTA/Liu Wang Tegmark - KAN_crop.pdf'
 
 # Crop box format: (lower_left_x, lower_left_y, upper_right_x, upper_right_y)
-crop_box_odd = ((90, 105), (590, 700))
-crop_box_even = ((20, 105), (520, 700))
+crop_box_odd = ((45, 60), (560, 730))
+crop_box_even = ((45, 60), (560, 730))
 
 crop_pdf(input_pdf_path, output_pdf_path, crop_box_odd, crop_box_even)
